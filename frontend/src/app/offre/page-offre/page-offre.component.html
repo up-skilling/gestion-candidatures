@@ -1,0 +1,19 @@
+<div>
+
+  <h2>Page des offres</h2>
+
+  <div>
+
+    <router-outlet name="offres"></router-outlet>
+
+  </div>
+
+  <nav>
+    <ul>
+      <li><a routerLinkActive="active" [routerLink]="['/offres']">Offres</a></li>
+      <li><a routerLinkActive="active" [routerLink]="['/suivis']">Suivis</a></li>
+      <li><a routerLinkActive="active" [routerLink]="['/offres/form-offre']">Ajouter</a></li>
+    </ul>
+  </nav>
+
+</div>

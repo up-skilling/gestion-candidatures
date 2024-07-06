@@ -1,0 +1,20 @@
+<div>
+
+  <h2>Page de suivi</h2>
+
+  <h3>Tableau de suivi</h3>
+
+  <div>
+
+    <app-detail-suivi *ngFor="let suivi of suivis" [suivi]="suivi"></app-detail-suivi>
+
+  </div>
+
+  <nav>
+    <ul>
+      <li><a routerLinkActive="active" [routerLink]="['/offres']">Offres</a></li>
+      <li><a routerLinkActive="active" [routerLink]="['/offres/form-offre']">Ajouter une offre</a></li>
+    </ul>
+  </nav>
+
+</div>

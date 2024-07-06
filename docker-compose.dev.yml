@@ -1,0 +1,59 @@
+version: '3.8'
+# lancer avec : docker compose -f docker-compose.dev.yml --env-file .env up -d
+services:
+  backend:
+    container_name: backend-gestcand
+    restart: on-failure
+    depends_on:
+      - db
+    build:
+      context: ./backend
+      target: ${TARGET:-development}
+      args:
+        - JDK_IMAGE=17.0.3_7-jdk-jammy
+        - JRE_VERSION=17-jre-jammy
+        - APP_NAME=gestion-candidatures
+    environment:
+      MONGO_INITDB_CONNECTION_STRING: ${MONGO_CONNECTION_STRING}
+      MONGO_INITDB_ROOT_DATABASE: ${MONGO_DATABASE:-dbname}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-pwd}
+    ports:
+      - ${BACKEND_PORT:-8080}:8080
+      - "35729:35729"
+      - "5005:5005"
+    volumes:
+      - ./backend:/app
+      - ./backend/.m2:/root/.m2
+
+  frontend:
+    container_name: frontend-gestcand
+    restart: on-failure
+    build:
+      context: ./frontend
+      args:
+        - NODE_VERSION=16.20.1-slim
+        - NG_VERSION=15
+    ports:
+      - ${FRONTEND_PORT:-4200}:4200
+    volumes:
+      - ./frontend:/app
+
+  db:
+    container_name: mongodb44-gestcand
+    image: mongo:4.4
+    restart: on-failure
+    environment:
+      MONGO_INITDB_ROOT_DATABASE: ${MONGO_DATABASE:-dbname}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-pwd}
+    ports:
+      - ${MONGO_PORT:-27017}:27017
+    volumes:
+      # named volumes
+      - ./mongodb-data:/data/db
+      # seeding scripts
+      #- ./mongo-entrypoint/init.js:/docker-entrypoint-initdb.d/init.js
+
+volumes:
+  mongodb-data:

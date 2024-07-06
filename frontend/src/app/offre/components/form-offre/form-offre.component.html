@@ -1,0 +1,53 @@
+<h3>Formulaire des offres</h3>
+
+<form novalidate #offreForm="ngForm" (ngSubmit)="onSubmitForm()">
+
+  <div>
+    <label for="posteInput">Nom du poste</label>
+    <input type="text" id="posteInput" name="offrePoste" [(ngModel)]="offre.poste" placeholder="Intitulé du poste" required #poste="ngModel" [ngClass]="{'is-invalid': poste.touched && !poste.valid }">
+
+    <div class="invalid-feedback">
+      <span *ngIf="poste.errors?.['required']">Entrez le nom du poste</span>
+      <span *ngIf="poste.errors?.['minlength']">Minimum 8 caractères</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="societeInput">Nom de la société</label>
+    <input type="text" id="societeInput" name="offreSociete" [(ngModel)]="offre.societe" placeholder="Nom de l'entreprise" required #societe="ngModel" [ngClass]="{'is-invalid': societe.touched && !societe.valid }">
+
+    <div class="invalid-feedback">
+      <span *ngIf="societe.errors?.['required']">Entrez le nom de l'entreprise</span>
+      <span *ngIf="societe.errors?.['minlength']">Minimum 3 caractères</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="villeInput">Nom de la ville</label>
+    <input type="text" id="villeInput" name="offreVille" [(ngModel)]="offre.ville" placeholder="Ville du poste" required #ville="ngModel" [ngClass]="{'is-invalid': ville.touched && !ville.valid }">
+
+    <div class="invalid-feedback">
+      <span *ngIf="ville.errors?.['required']">Entrez le nom de la ville</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="datePublicationInput">Date de l'offre</label>
+    <input type="datetime-local" id="datePublicationInput" name="offreDatePublication" [(ngModel)]="offre.datePublication" required #datePublication="ngModel" [ngClass]="{'is-invalid': datePublication.touched && !datePublication.valid }">
+
+    <div class="invalid-feedback">
+      <span *ngIf="datePublication.errors?.['required']">Indiquez une date</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="lienInput">Lien vers l'offre</label>
+    <input type="text" id="lienInput" name="offreLien" [(ngModel)]="offre.lien" #lien="ngModel" [ngClass]="{'is-invalid': lien.touched && !lien.valid }">
+  </div>
+
+  <div>
+    <button type="submit">Valider</button>
+    <button (click)="initForm(offreForm)" type="button">Effacer</button>
+  </div>
+
+</form>

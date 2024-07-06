@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+/* Base de styles généraux */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::after, ::before {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  font-family: Poppins, sans-serif;
+  text-decoration: none;
+  color: black;
+}
+
+.alert {
+  border-radius: 8px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Bitter, serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Poppins, serif;
+  width: 100%;
+}
+
+.button {
+  font-family: Bitter sans-serif !Important;
+}

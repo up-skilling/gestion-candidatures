@@ -1,0 +1,8 @@
+export enum EtatEnum {
+  A_FAIRE = 'A_FAIRE',
+  EN_COURS = 'EN_COURS',
+  FAIT = 'FAIT',
+  EN_ATTENTE = 'EN_ATTENTE',
+  REFUS = 'REFUS',
+  ACCEPTATION = 'ACCEPTATION'
+}
